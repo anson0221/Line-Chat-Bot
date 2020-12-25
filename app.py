@@ -14,21 +14,106 @@ load_dotenv()
 
 
 machine = TocMachine(
-    states=["user", "state1", "state2"],
+    states=[
+            "user", "main_table",
+            "ptt", "pttbox", "pttlive", "ptthot",
+            "highlights", "yt_search", "yt_output", "choose_team", "show_team_record", "search_player", "show_player_stats",
+            "data", "show_stats_leader"
+            ],
     transitions=[
         {
             "trigger": "advance",
             "source": "user",
-            "dest": "state1",
-            "conditions": "is_going_to_state1",
+            "dest": "main_table",
+            "conditions": "is_going_to_main_table",
         },
         {
             "trigger": "advance",
-            "source": "user",
-            "dest": "state2",
-            "conditions": "is_going_to_state2",
+            "source": "main_table",
+            "dest": "ptt",
+            "conditions": "is_going_to_ppt",
         },
-        {"trigger": "go_back", "source": ["state1", "state2"], "dest": "user"},
+        {
+            "trigger": "advance",
+            "source": "main_table",
+            "dest": "highlights",
+            "conditions": "is_going_to_highlights",
+        },
+        {
+            "trigger": "advance",
+            "source": "main_table",
+            "dest": "data",
+            "conditions": "is_going_to_data",
+        },
+        {
+            "trigger": "advance",
+            "source": "ptt",
+            "dest": "pttbox",
+            "conditions": "is_going_to_pttbox",
+        },
+        {
+            "trigger": "advance",
+            "source": "ptt",
+            "dest": "pttlive",
+            "conditions": "is_going_to_pttlive",
+        },
+        {
+            "trigger": "advance",
+            "source": "ptt",
+            "dest": "ptthot",
+            "conditions": "is_going_to_ptthot",
+        },
+        {
+            "trigger": "advance",
+            "source": "highlights",
+            "dest": "yt_search",
+            "conditions": "is_going_to_yt_search",
+        },
+        {
+            "trigger": "advance",
+            "source": "yt_search",
+            "dest": "yt_output",
+            "conditions": "is_going_to_yt_output",
+        },
+        {
+            "trigger": "advance",
+            "source": "data",
+            "dest": "choose_team",
+            "conditions": "is_going_to_choose_team",
+        },
+        {
+            "trigger": "advance",
+            "source": "choose_team",
+            "dest": "show_team_record",
+            "conditions": "is_going_to_show_team_record",
+        },
+        {
+            "trigger": "advance",
+            "source": "data",
+            "dest": "search_player",
+            "conditions": "is_going_to_search_player",
+        },
+        {
+            "trigger": "advance",
+            "source": "search_player",
+            "dest": "show_player_stats",
+            "conditions": "is_going_to_show_player_stats",
+        },
+        {
+            "trigger": "advance",
+            "source": "data",
+            "dest": "show_stats_leader",
+            "conditions": "is_going_to_show_stats_leader",
+        },
+        {
+            "trigger": "go_back", 
+            "source": [
+                        "ptt", "pttbox", "pttlive", "ptthot",
+                        "highlights", "yt_search", "yt_output", "choose_team", "show_team_record", "search_player", "show_player_stats",
+                        "data", "show_stats_leader"
+                    ], 
+            "dest": "main_table",
+            },
     ],
     initial="user",
     auto_transitions=False,
@@ -52,6 +137,8 @@ line_bot_api = LineBotApi(channel_access_token)
 parser = WebhookParser(channel_secret)
 
 
+mode = 'initial'
+
 @app.route("/callback", methods=["POST"])
 def callback():
     signature = request.headers["X-Line-Signature"]
@@ -71,6 +158,9 @@ def callback():
             continue
         if not isinstance(event.message, TextMessage):
             continue
+        if not isinstance(event.message.text, str):
+            continue
+
 
         line_bot_api.reply_message(
             event.reply_token, TextSendMessage(text=event.message.text)
