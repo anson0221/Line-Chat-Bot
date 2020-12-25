@@ -161,6 +161,7 @@ def callback():
         
         source = machine.state
         response = machine.advance(event)
+        send_text_message(event.reply_token, str(response))
         dest = machine.state
         
         if response == False:
