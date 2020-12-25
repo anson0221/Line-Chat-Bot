@@ -159,7 +159,9 @@ def callback():
         if not isinstance(event.message.text, str):
             continue
 
-        machine.advance(event)
+        response = machine.advance(event)
+        if response == False:
+            send_text_message(event.reply_token, "Invalid command, try again")
         # line_bot_api.reply_message(
         #     event.reply_token, TextSendMessage(text=event.message.text)
         # )
