@@ -162,7 +162,7 @@ def callback():
         source = machine.state
         response = machine.advance(event)
         dest = machine.state
-        text = source+'to'+dest
+        text = source+' to '+dest
         send_text_message(event.reply_token, text)
         if response == False:
             send_text_message(event.reply_token, "Invalid command, try again")

@@ -15,6 +15,7 @@ class TocMachine(GraphMachine):
     # is_going_to_
     def is_going_to_main_table(self, event):
         text = event.message.text
+        send_text_message(event.reply_token, text.lower())
         return text.lower() == "main_table"
 
     def is_going_to_ptt(self, event):
