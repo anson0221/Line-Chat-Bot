@@ -137,8 +137,6 @@ line_bot_api = LineBotApi(channel_access_token)
 parser = WebhookParser(channel_secret)
 
 
-mode = 'initial'
-
 @app.route("/callback", methods=["POST"])
 def callback():
     signature = request.headers["X-Line-Signature"]
@@ -161,10 +159,10 @@ def callback():
         if not isinstance(event.message.text, str):
             continue
 
-
-        line_bot_api.reply_message(
-            event.reply_token, TextSendMessage(text=event.message.text)
-        )
+        machine.advance(event)
+        # line_bot_api.reply_message(
+        #     event.reply_token, TextSendMessage(text=event.message.text)
+        # )
 
     return "OK"
 
