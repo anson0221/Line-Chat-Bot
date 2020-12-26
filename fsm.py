@@ -24,7 +24,7 @@ class TocMachine(GraphMachine):
 
     def is_going_to_pttbox(self, event):
         text = event.message.text
-        return text.lower() == "pptbox"
+        return text.lower() == "pttbox"
 
     def is_going_to_pttlive(self, event):
         text = event.message.text
@@ -111,9 +111,9 @@ class TocMachine(GraphMachine):
         reply_token = event.reply_token
 
         img_url = []
-        img_url.append('https://imgur.com/a/J9zgMNY') # box
-        img_url.append('https://imgur.com/a/XPpGEcb') # live
-        img_url.append('https://imgur.com/a/hOkGtCZ') # 爆
+        img_url.append('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6-GyU9jA6AITXvjPe1I4kwQf-YeB6ZUQacg&usqp=CAU') # box
+        img_url.append('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkVmYDyLV-eolrX1HnslNYCIvs9BqXzXTIpw&usqp=CAU') # live
+        img_url.append('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTc0NiNVvabDGYx-yY8h5d71LNraKixtKHjzA&usqp=CAU') # 爆
 
         label_list = []
         label_list.append('Box')
