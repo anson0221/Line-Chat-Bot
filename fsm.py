@@ -34,42 +34,6 @@ class TocMachine(GraphMachine):
         text = event.message.text
         return text.lower() == "ptthot"
 
-    def is_going_to_highlights(self, event):
-        text = event.message.text
-        return text.lower() == "highlights"
-
-    def is_going_to_yt_search(self, event):
-        text = event.message.text
-        return text.lower() == "yt_search"
-
-    def is_going_to_yt_output(self, event):
-        text = event.message.text
-        return text.lower() == "yt_output"
-
-    def is_going_to_choose_team(self, event):
-        text = event.message.text
-        return text.lower() == "choose_team"
-
-    def is_going_to_show_team_record(self, event):
-        text = event.message.text
-        return text.lower() == "show_team_record"
-
-    def is_going_to_search_player(self, event):
-        text = event.message.text
-        return text.lower() == "search_player"
-
-    def is_going_to_show_player_stats(self, event):
-        text = event.message.text
-        return text.lower() == "show_player_stats"
-
-    def is_going_to_data(self, event):
-        text = event.message.text
-        return text.lower() == "data"
-
-    def is_going_to_show_stats_leader(self, event):
-        text = event.message.text
-        return text.lower() == "show_stats_leader"
-
 
     # main_table
     def on_enter_main_table(self, event):
@@ -78,30 +42,22 @@ class TocMachine(GraphMachine):
 
         img_url = []
         img_url.append('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTi5ehTVtlI33F7CaydVwWwtE8nmn5XLa5zew&usqp=CAU') # ptt nba
-        img_url.append('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ03k-NhlEgFbCMQD9xvKO5oiJSnW4ldzp49w&usqp=CAU') # nba highlights
-        img_url.append('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRzdKpTVlJhlqcnnUPpS3vNych2o27NDcBlA&usqp=CAU') # nba stats
 
         label_list = []
         label_list.append('PTT')
-        label_list.append('Highlights')
-        label_list.append('StatsLeaders')
 
         text_list = []
         text_list.append('ptt')
-        text_list.append('highlights')
-        text_list.append('data')
-        
 
         column = []
-        for i in range(3):
-            x = ImageCarouselColumn(
-                image_url=img_url[i],
-                action=MessageTemplateAction(
-                    label=label_list[i],
-                    text=text_list[i]
-                )
+        x = ImageCarouselColumn(
+            image_url=img_url[i],
+            action=MessageTemplateAction(
+                label=label_list[i],
+                text=text_list[i]
             )
-            column.append(x)
+        )
+        column.append(x)
 
         send_carousel_message(reply_token, column)
 
@@ -169,7 +125,7 @@ class TocMachine(GraphMachine):
 
         title_url = ''
         title_text = ''
-        url = 'https://www.ptt.cc/bbs/NBA/index.html' # ptt basketball
+        url = 'https://www.ptt.cc/bbs/NBA/index.html' # ptt nba
         count = 0
         while True:
             break_or_not = False
@@ -273,7 +229,7 @@ class TocMachine(GraphMachine):
         title_text = ''
 
         ptt_url = 'https://www.ptt.cc'
-        url = 'https://www.ptt.cc/bbs/NBA/index.html' # ptt basketball
+        url = 'https://www.ptt.cc/bbs/NBA/index.html' # ptt nba
 
         count = 0
         while True:
@@ -355,7 +311,6 @@ class TocMachine(GraphMachine):
         text_ = '最近一個禮拜的爆文如下：\n\n'
         for i in range(len(title_list)):
             text_ += '('+date_list[i]+')'+'\n'+title_list[i]+'\n'+url_list[i]+'\n\n'
-        if text_=='':
-            text_ = 'None'
 
         send_text_message(reply_token, text_)
+
