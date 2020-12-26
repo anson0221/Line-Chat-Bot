@@ -15,6 +15,7 @@ def send_text_message(reply_token, text):
 
 def send_carousel_message(reply_token, column_):
     line_bot_api = LineBotApi(channel_access_token)
+    print(column_)
     message = TemplateSendMessage(
         alt_text='Carousel Template', 
         template=ImageCarouselTemplate(column=column_)
