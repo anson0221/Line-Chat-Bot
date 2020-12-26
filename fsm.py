@@ -77,7 +77,7 @@ class TocMachine(GraphMachine):
         reply_token = event.reply_token
 
         img_url = []
-        img_url.append('https://imgur.com/a/XGkj1te') # ptt nba
+        img_url.append('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTi5ehTVtlI33F7CaydVwWwtE8nmn5XLa5zew&usqp=CAU') # ptt nba
         img_url.append('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ03k-NhlEgFbCMQD9xvKO5oiJSnW4ldzp49w&usqp=CAU') # nba highlights
         img_url.append('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRzdKpTVlJhlqcnnUPpS3vNych2o27NDcBlA&usqp=CAU') # nba stats
 

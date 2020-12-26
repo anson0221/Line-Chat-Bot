@@ -31,7 +31,7 @@ machine = TocMachine(
             "trigger": "advance",
             "source": "main_table",
             "dest": "ptt",
-            "conditions": "is_going_to_ppt",
+            "conditions": "is_going_to_ptt",
         },
         {
             "trigger": "advance",
