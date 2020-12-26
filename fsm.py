@@ -51,10 +51,10 @@ class TocMachine(GraphMachine):
 
         column = []
         x = ImageCarouselColumn(
-            image_url=img_url[i],
+            image_url=img_url[0],
             action=MessageTemplateAction(
-                label=label_list[i],
-                text=text_list[i]
+                label=label_list[0],
+                text=text_list[0]
             )
         )
         column.append(x)
