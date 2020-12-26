@@ -141,110 +141,215 @@ class TocMachine(GraphMachine):
 
     # pttbox
     def on_enter_pttbox(self, event):
-        reply_token = event.reply_token
+        self.for_ptt_BOX_and_Live(event, '[BOX ]')
+        # reply_token = event.reply_token
 
-        title_list_td = []
-        title_list_ystrd = []
-        url_list_td = []
-        url_list_ystrd = []
-        date_list_td = []
-        date_list_ystrd = []
-        ptt_url = 'https://www.ptt.cc'
+        # title_list_td = []
+        # title_list_ystrd = []
+        # url_list_td = []
+        # url_list_ystrd = []
+        # date_list_td = []
+        # date_list_ystrd = []
+        # ptt_url = 'https://www.ptt.cc'
 
-        today = datetime.now().astimezone(timezone(timedelta(hours=8))) # 轉換時區：東8
-        year_td = today.year
-        yesterday = today-timedelta(1)
-        year_ystrd = yesterday.year
-        today = str(today.month)+'/'+str(today.day)
-        yesterday = str(yesterday.month)+'/'+str(yesterday.day)
+        # today = datetime.now().astimezone(timezone(timedelta(hours=8))) # 轉換時區：東8
+        # year_td = today.year
+        # yesterday = today-timedelta(1)
+        # year_ystrd = yesterday.year
+        # today = str(today.month)+'/'+str(today.day)
+        # yesterday = str(yesterday.month)+'/'+str(yesterday.day)
 
-        title_url = ''
-        title_text = ''
-        url = 'https://www.ptt.cc/bbs/NBA/index.html' # ptt basketball
-        count = 0
-        while True:
-            break_or_not = False
+        # title_url = ''
+        # title_text = ''
+        # url = 'https://www.ptt.cc/bbs/NBA/index.html' # ptt basketball
+        # count = 0
+        # while True:
+        #     break_or_not = False
 
-            r = requests.get(url)
-            soup = BeautifulSoup(r.text, 'html.parser')
-            ini_resault = soup.select('.r-ent')
+        #     r = requests.get(url)
+        #     soup = BeautifulSoup(r.text, 'html.parser')
+        #     ini_resault = soup.select('.r-ent')
 
-            for tmp_resault in ini_resault:
-                tmp = tmp_resault.select('div.date')
-                title_tmp = tmp_resault.select('.title a')
+        #     for tmp_resault in ini_resault:
+        #         tmp = tmp_resault.select('div.date')
+        #         title_tmp = tmp_resault.select('.title a')
 
-                for i in title_tmp:
-                    title_url = ptt_url+i['href']
-                    title_text = i.text
+        #         for i in title_tmp:
+        #             title_url = ptt_url+i['href']
+        #             title_text = i.text
 
-                for i in tmp:
-                    if i.text==today:
-                        date_list_td.append(i.text)
-                        title_list_td.append(title_text)
-                        url_list_td.append(title_url)
-                    elif i.text==yesterday:
-                        date_list_ystrd.append(i.text)
-                        title_list_ystrd.append(title_text)
-                        url_list_ystrd.append(title_url)
-                    else:
-                        break_or_not = True
+        #         for i in tmp:
+        #             if i.text==today:
+        #                 date_list_td.append(i.text)
+        #                 title_list_td.append(title_text)
+        #                 url_list_td.append(title_url)
+        #             elif i.text==yesterday:
+        #                 date_list_ystrd.append(i.text)
+        #                 title_list_ystrd.append(title_text)
+        #                 url_list_ystrd.append(title_url)
+        #             else:
+        #                 break_or_not = True
 
-            gate = 0
-            new_url = ''
-            for_url = soup.select('.btn.wide')
-            for i in for_url:
-                for j in i:
-                    if j=='‹ 上頁':
-                        new_url = ptt_url+i['href']
-                        gate = 1
-                        break
-                if gate==1:
-                    break
+        #     gate = 0
+        #     new_url = ''
+        #     for_url = soup.select('.btn.wide')
+        #     for i in for_url:
+        #         for j in i:
+        #             if j=='‹ 上頁':
+        #                 new_url = ptt_url+i['href']
+        #                 gate = 1
+        #                 break
+        #         if gate==1:
+        #             break
             
-            if count == 0: # 最少爬兩頁
-                url = new_url
-                count+=1
-            else:
-                if break_or_not:
-                    break
-                else:
-                    url = new_url
-                    count+=1
+        #     if count == 0: # 最少爬兩頁
+        #         url = new_url
+        #         count+=1
+        #     else:
+        #         if break_or_not:
+        #             break
+        #         else:
+        #             url = new_url
+        #             count+=1
             
-        final_url_td = []
-        final_title_td = []
-        final_url_ystrd = []
-        final_title_ystrd = []
-        for i in range(len(url_list_td)):
-            if title_list_td[i].find('[BOX ]')==0:
-                final_url_td.append(url_list_td[i])
-                final_title_td.append(title_list_td[i])
-        for i in range(len(url_list_ystrd)):
-            if title_list_ystrd[i].find('[BOX ]')==0:
-                final_url_ystrd.append(url_list_ystrd[i])
-                final_title_ystrd.append(title_list_ystrd[i])
+        # final_url_td = []
+        # final_title_td = []
+        # final_url_ystrd = []
+        # final_title_ystrd = []
+        # for i in range(len(url_list_td)):
+        #     if title_list_td[i].find('[BOX ]')==0:
+        #         final_url_td.append(url_list_td[i])
+        #         final_title_td.append(title_list_td[i])
+        # for i in range(len(url_list_ystrd)):
+        #     if title_list_ystrd[i].find('[BOX ]')==0:
+        #         final_url_ystrd.append(url_list_ystrd[i])
+        #         final_title_ystrd.append(title_list_ystrd[i])
 
-        # combine text
-        text_td = ''
-        for i in range(len(final_url_td)):
-            text_td += final_title_td[i]+'\n'+final_url_td[i]+'\n\n'
-        if text_td=='':
-            text_td = 'None'
+        # # combine text
+        # text_td = ''
+        # for i in range(len(final_url_td)):
+        #     text_td += final_title_td[i]+'\n'+final_url_td[i]+'\n\n'
+        # if text_td=='':
+        #     text_td = 'None'
 
-        text_ystrd = ''
-        for i in range(len(final_url_ystrd)):
-            text_ystrd += final_title_ystrd[i]+'\n'+final_url_ystrd[i]+'\n\n'
-        if text_ystrd=='':
-            text_ystrd = 'None'
+        # text_ystrd = ''
+        # for i in range(len(final_url_ystrd)):
+        #     text_ystrd += final_title_ystrd[i]+'\n'+final_url_ystrd[i]+'\n\n'
+        # if text_ystrd=='':
+        #     text_ystrd = 'None'
 
-        text_td = str(year_td)+'/'+today+'\n\n'+text_td
-        text_ystrd = str(year_ystrd)+'/'+yesterday+'\n\n'+text_ystrd
+        # text_td = str(year_td)+'/'+today+'\n\n'+text_td
+        # text_ystrd = str(year_ystrd)+'/'+yesterday+'\n\n'+text_ystrd
 
-        send_text_message(reply_token, text_td+'\n\n\n'+text_ystrd)
+        # send_text_message(reply_token, text_td+'\n\n\n'+text_ystrd)
 
 
     # pttlive
     def on_enter_pttlive(self, event):
+        self.for_ptt_BOX_and_Live(event, '[Live]')
+        # reply_token = event.reply_token
+
+        # title_list_td = []
+        # title_list_ystrd = []
+        # url_list_td = []
+        # url_list_ystrd = []
+        # date_list_td = []
+        # date_list_ystrd = []
+        # ptt_url = 'https://www.ptt.cc'
+
+        # today = datetime.now().astimezone(timezone(timedelta(hours=8))) # 轉換時區：東8
+        # year_td = today.year
+        # yesterday = today-timedelta(1)
+        # year_ystrd = yesterday.year
+        # today = str(today.month)+'/'+str(today.day)
+        # yesterday = str(yesterday.month)+'/'+str(yesterday.day)
+
+        # title_url = ''
+        # title_text = ''
+        # url = 'https://www.ptt.cc/bbs/NBA/index.html' # ptt basketball
+        # count = 0
+        # while True:
+        #     break_or_not = False
+
+        #     r = requests.get(url)
+        #     soup = BeautifulSoup(r.text, 'html.parser')
+        #     ini_resault = soup.select('.r-ent')
+
+        #     for tmp_resault in ini_resault:
+        #         tmp = tmp_resault.select('div.date')
+        #         title_tmp = tmp_resault.select('.title a')
+
+        #         for i in title_tmp:
+        #             title_url = ptt_url+i['href']
+        #             title_text = i.text
+
+        #         for i in tmp:
+        #             if i.text==today:
+        #                 date_list_td.append(i.text)
+        #                 title_list_td.append(title_text)
+        #                 url_list_td.append(title_url)
+        #             elif i.text==yesterday:
+        #                 date_list_ystrd.append(i.text)
+        #                 title_list_ystrd.append(title_text)
+        #                 url_list_ystrd.append(title_url)
+        #             else:
+        #                 break_or_not = True
+
+        #     gate = 0
+        #     new_url = ''
+        #     for_url = soup.select('.btn.wide')
+        #     for i in for_url:
+        #         for j in i:
+        #             if j=='‹ 上頁':
+        #                 new_url = ptt_url+i['href']
+        #                 gate = 1
+        #                 break
+        #         if gate==1:
+        #             break
+            
+        #     if count == 0: # 最少爬兩頁
+        #         url = new_url
+        #         count+=1
+        #     else:
+        #         if break_or_not:
+        #             break
+        #         else:
+        #             url = new_url
+        #             count+=1
+            
+        # final_url_td = []
+        # final_title_td = []
+        # final_url_ystrd = []
+        # final_title_ystrd = []
+        # for i in range(len(url_list_td)):
+        #     if title_list_td[i].find('[Live]')==0:
+        #         final_url_td.append(url_list_td[i])
+        #         final_title_td.append(title_list_td[i])
+        # for i in range(len(url_list_ystrd)):
+        #     if title_list_ystrd[i].find('[Live]')==0:
+        #         final_url_ystrd.append(url_list_ystrd[i])
+        #         final_title_ystrd.append(title_list_ystrd[i])
+
+        # # combine text
+        # text_td = ''
+        # for i in range(len(final_url_td)):
+        #     text_td += final_title_td[i]+'\n'+final_url_td[i]+'\n\n'
+        # if text_td=='':
+        #     text_td = 'None'
+
+        # text_ystrd = ''
+        # for i in range(len(final_url_ystrd)):
+        #     text_ystrd += final_title_ystrd[i]+'\n'+final_url_ystrd[i]+'\n\n'
+        # if text_ystrd=='':
+        #     text_ystrd = 'None'
+
+        # text_td = str(year_td)+'/'+today+'\n\n'+text_td
+        # text_ystrd = str(year_ystrd)+'/'+yesterday+'\n\n'+text_ystrd
+
+        # send_text_message(reply_token, text_td+'\n\n\n'+text_ystrd)
+
+
+    def for_ptt_BOX_and_Live(self, event, target: str):
         reply_token = event.reply_token
 
         title_list_td = []
@@ -320,11 +425,11 @@ class TocMachine(GraphMachine):
         final_url_ystrd = []
         final_title_ystrd = []
         for i in range(len(url_list_td)):
-            if title_list_td[i].find('[Live]')==0:
+            if title_list_td[i].find(target)==0:
                 final_url_td.append(url_list_td[i])
                 final_title_td.append(title_list_td[i])
         for i in range(len(url_list_ystrd)):
-            if title_list_ystrd[i].find('[Live]')==0:
+            if title_list_ystrd[i].find(target)==0:
                 final_url_ystrd.append(url_list_ystrd[i])
                 final_title_ystrd.append(title_list_ystrd[i])
 
