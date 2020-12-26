@@ -2,7 +2,7 @@ from transitions.extensions import GraphMachine
 
 from utils import send_text_message, send_carousel_message
 from linebot.models import ImageCarouselColumn, URITemplateAction, MessageTemplateAction
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from bs4 import BeautifulSoup
 import requests
 
@@ -151,7 +151,7 @@ class TocMachine(GraphMachine):
         date_list_ystrd = []
         ptt_url = 'https://www.ptt.cc'
 
-        today = datetime.now()
+        today = datetime.now().astimezone(timezone(timedelta(hours=8))) # 轉換時區：東8
         year_td = today.year
         yesterday = today-timedelta(1)
         year_ystrd = yesterday.year
