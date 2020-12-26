@@ -120,6 +120,12 @@ machine = TocMachine(
     show_conditions=True,
 )
 
+final_states = [
+    "pttbox", "pttlive", "ptthot",
+    "yt_output", "show_team_record", "show_player_stats",
+    "show_stats_leader"
+]
+
 app = Flask(__name__, static_url_path="")
 
 
@@ -159,11 +165,15 @@ def callback():
         if not isinstance(event.message.text, str):
             continue
         
-        response = machine.advance(event)
-        print(machine.state)
-        
-        if response == False:
-            send_text_message(event.reply_token, "Invalid command")
+        response = True
+        for state in final_states:
+            if machine.state==state:
+                response = False
+
+        if response:
+            response = machine.advance(event)
+        else:
+            send_text_message(event.reply_token, "Initialization")
             machine.go_back()
        
         # line_bot_api.reply_message(
