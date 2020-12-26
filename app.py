@@ -163,7 +163,8 @@ def callback():
         print(machine.state)
         
         if response == False:
-            send_text_message(event.reply_token, "Invalid command, try again")
+            send_text_message(event.reply_token, "Invalid command")
+            machine.go_back()
        
         # line_bot_api.reply_message(
         #     event.reply_token, TextSendMessage(text=event.message.text)
