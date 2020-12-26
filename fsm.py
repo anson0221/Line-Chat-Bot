@@ -240,5 +240,4 @@ class TocMachine(GraphMachine):
         text_td = str(year_td)+'/'+today+'\n\n'+text_td
         text_ystrd = str(year_ystrd)+'/'+yesterday+'\n\n'+text_ystrd
 
-        send_text_message(reply_token, text_td)
-        send_text_message(reply_token, text_ystrd)
+        send_text_message(reply_token, text_td+'\n\n\n'+text_ystrd)
