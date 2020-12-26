@@ -320,11 +320,11 @@ class TocMachine(GraphMachine):
         final_url_ystrd = []
         final_title_ystrd = []
         for i in range(len(url_list_td)):
-            if title_list_td[i].find('[LIVE]')==0:
+            if title_list_td[i].find('[Live]')==0:
                 final_url_td.append(url_list_td[i])
                 final_title_td.append(title_list_td[i])
         for i in range(len(url_list_ystrd)):
-            if title_list_ystrd[i].find('[LIVE]')==0:
+            if title_list_ystrd[i].find('[Live]')==0:
                 final_url_ystrd.append(url_list_ystrd[i])
                 final_title_ystrd.append(title_list_ystrd[i])
 
