@@ -173,14 +173,10 @@ def callback():
         if response:
             response = machine.advance(event)
         else:
-            send_text_message(event.reply_token, "Initialization -> Please type any string to show the main table")
+            send_text_message(event.reply_token, "Initialization :\nPlease input any string to show the main table")
             machine.go_back()
             print(machine.state)
        
-        # line_bot_api.reply_message(
-        #     event.reply_token, TextSendMessage(text=event.message.text)
-        # )
-
     return "OK"
 
 
