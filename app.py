@@ -112,7 +112,7 @@ machine = TocMachine(
                         "highlights", "yt_search", "yt_output", "choose_team", "show_team_record", "search_player", "show_player_stats",
                         "data", "show_stats_leader"
                     ], 
-            "dest": "main_table",
+            "dest": "user",
             },
     ],
     initial="user",
@@ -173,7 +173,7 @@ def callback():
         if response:
             response = machine.advance(event)
         else:
-            send_text_message(event.reply_token, "Initialization")
+            send_text_message(event.reply_token, "Initialization -> Please type any string to show the main table")
             machine.go_back()
             print(machine.state)
        
