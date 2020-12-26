@@ -15,12 +15,12 @@ class TocMachine(GraphMachine):
     # is_going_to_
     def is_going_to_main_table(self, event):
         text = event.message.text
-        send_text_message(event.reply_token, text.lower())
+        print('is_going_to_main_table')
         return text.lower() == "main_table"
 
     def is_going_to_ptt(self, event):
         text = event.message.text
-        return text.lower() == "ppt"
+        return text.lower() == "ptt"
 
     def is_going_to_pttbox(self, event):
         text = event.message.text
@@ -73,6 +73,7 @@ class TocMachine(GraphMachine):
 
     # main_table
     def on_enter_main_table(self, event):
+        print('on_enter_main_table')
         reply_token = event.reply_token
 
         img_url = []
@@ -103,7 +104,6 @@ class TocMachine(GraphMachine):
             column.append(x)
 
         send_carousel_message(reply_token, column)
-        send_text_message(reply_token, 'on_enter_main_table')
 
 
     # ptt
