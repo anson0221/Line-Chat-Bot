@@ -175,6 +175,7 @@ def callback():
         else:
             send_text_message(event.reply_token, "Initialization")
             machine.go_back()
+            print(machine.state)
        
         # line_bot_api.reply_message(
         #     event.reply_token, TextSendMessage(text=event.message.text)
