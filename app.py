@@ -109,12 +109,13 @@ def callback():
         for state in final_states:
             if machine.state==state:
                 response = False
+                break
 
         if response:
-            response = machine.advance(event)
+            machine.advance(event)
         else:
-            send_text_message(event.reply_token, "Initialization :\nPlease input any string to show the main table")
             machine.go_back()
+            send_text_message(event.reply_token, "Initialization :\nPlease enter any string to show the main table")
             print(machine.state)
        
     return "OK"
