@@ -259,7 +259,7 @@ class TocMachine(GraphMachine):
         qualified_date = []
         qualified_year = []
         today = datetime.now().astimezone(timezone(timedelta(hours=8))) # 轉換時區：東8
-        for i in range(14):
+        for i in range(7):
             date = today-timedelta(i)
             qualified_date.append(str(date.month)+'/'+str(date.day))
             qualified_year.append(str(date.year))
@@ -352,7 +352,7 @@ class TocMachine(GraphMachine):
             
 
         # combine text
-        text_ = '最近兩個禮拜的爆文如下：\n\n'
+        text_ = '最近一個禮拜的爆文如下：\n\n'
         for i in range(len(title_list)):
             text_ += '('+date_list[i]+')'+'\n'+title_list[i]+'\n'+url_list[i]+'\n\n'
         if text_=='':
