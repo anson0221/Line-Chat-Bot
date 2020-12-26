@@ -84,7 +84,7 @@ class TocMachine(GraphMachine):
         label_list = []
         label_list.append('PTT')
         label_list.append('Highlights')
-        label_list.append('Stats Leaders')
+        label_list.append('StatsLeaders')
 
         text_list = []
         text_list.append('ptt')
