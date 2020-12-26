@@ -103,6 +103,7 @@ class TocMachine(GraphMachine):
             column.append(x)
 
         send_carousel_message(reply_token, column)
+        send_text_message(reply_token, 'on_enter_main_table')
 
 
     # ptt
