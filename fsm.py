@@ -68,8 +68,8 @@ class TocMachine(GraphMachine):
 
         img_url = []
         img_url.append('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6-GyU9jA6AITXvjPe1I4kwQf-YeB6ZUQacg&usqp=CAU') # box
-        img_url.append('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1CCvMyfwFdvF8GFiDwm_zCMsQAyaU8TRwEA&usqp=CAU') # live
-        img_url.append('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTc0NiNVvabDGYx-yY8h5d71LNraKixtKHjzA&usqp=CAU') # 爆
+        img_url.append('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzR5Tfb0LWTSDrv-D3Skfr7nAlXs6FoLv2-g&usqp=CAU') # live
+        img_url.append('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQK_kX1uH62OowBxlIXDc7ywTs29RowKXPzBQ&usqp=CAU') # 爆
 
         label_list = []
         label_list.append('Box')
