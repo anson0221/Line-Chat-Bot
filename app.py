@@ -132,7 +132,7 @@ def callback():
         
             print(machine.state+'\n')
         else:
-            send_text_message(event.reply_token, "Please enter any string to show the main table.\n\nOr enter 'fsm' to show fsm.png")
+            # send_text_message(event.reply_token, "Please enter any string to show the main table.\n\nOr enter 'fsm' to show fsm.png")
             machine.go_back()
             machine.advance(event)
             
