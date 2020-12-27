@@ -1,7 +1,7 @@
 from transitions.extensions import GraphMachine
 
 from utils import send_text_message, send_carousel_message
-from linebot.models import ImageCarouselColumn, URITemplateAction, MessageTemplateAction
+from linebot.models import ImageCarouselColumn, MessageTemplateAction
 from datetime import datetime, timedelta, timezone
 from bs4 import BeautifulSoup
 import requests

@@ -1,11 +1,11 @@
 import os
 import sys
 
-from flask import Flask, jsonify, request, abort, send_file
+from flask import Flask, request, abort, send_file
 from dotenv import load_dotenv
 from linebot import LineBotApi, WebhookParser
 from linebot.exceptions import InvalidSignatureError
-from linebot.models import MessageEvent, TextMessage, TextSendMessage
+from linebot.models import MessageEvent, TextMessage
 
 from fsm import TocMachine
 from utils import send_image_message, send_text_message
@@ -128,9 +128,7 @@ def callback():
 
         if response :
             machine.advance(event)
-            
         else:
-            # send_text_message(event.reply_token, "Please enter any string to show the main table.\n\nOr enter 'fsm' to show fsm.png")
             machine.go_back()
             machine.advance(event)
             

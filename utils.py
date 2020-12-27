@@ -1,6 +1,6 @@
 import os
 
-from linebot import LineBotApi, WebhookParser
+from linebot import LineBotApi
 from linebot.models import TextSendMessage, TemplateSendMessage, ImageCarouselTemplate, ImageSendMessage
 
 
@@ -33,13 +33,3 @@ def send_image_message(reply_token, url):
     line_bot_api.reply_message(reply_token, message)
 
     return "OK"
-
-
-
-"""
-def send_image_url(id, img_url):
-    pass
-
-def send_button_message(id, text, buttons):
-    pass
-"""
