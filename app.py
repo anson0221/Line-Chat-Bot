@@ -111,10 +111,10 @@ def callback():
             send_image_message(event.reply_token, 'https://github.com/anson0221/Line-Chat-Bot/blob/master/fsm.png?raw=true')
             continue
         
-        response = True
+        response = False
         for state in final_states:
-            if machine.state==state:
-                response = False
+            if event.message.text==state:
+                response = True
                 break
 
         if response:
