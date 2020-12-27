@@ -67,13 +67,13 @@ final_states = [
     "pttbox", "pttlive", "ptthot",
 ]
 
-states = ["main_table", "ptt", "pttbox", "pttlive", "ptthot"]
-mt_goto_list = ["ptt"]
-ptt_goto_list = ["pttbox", "pttlive", "ptthot"]
-box_goto_list = []
-live_goto_list = []
-hot_goto_list = []
-cangoto_states={"main_table":mt_goto_list, "ptt":ptt_goto_list, "pttbox":box_goto_list, "pttlive":live_goto_list, "ptthot":hot_goto_list}
+# states = ["main_table", "ptt", "pttbox", "pttlive", "ptthot"]
+# mt_goto_list = ["ptt"]
+# ptt_goto_list = ["pttbox", "pttlive", "ptthot"]
+# box_goto_list = []
+# live_goto_list = []
+# hot_goto_list = []
+# cangoto_states={"main_table":mt_goto_list, "ptt":ptt_goto_list, "pttbox":box_goto_list, "pttlive":live_goto_list, "ptthot":hot_goto_list}
 
 app = Flask(__name__, static_url_path="")
 
@@ -125,15 +125,8 @@ def callback():
                 response = False # cannot advance
                 break
 
-        key = False
-        for state in states:
-            for candidate in cangoto_states[state]:
-                if event.message.text==candidate: 
-                    key == True # right format of instructions
-                    break
 
-
-        if (response and key) or machine.state=="user":
+        if response :
             print(machine.state)
             machine.advance(event)
             print(machine.state+'\n')
@@ -141,8 +134,6 @@ def callback():
             machine.go_back()
             send_text_message(event.reply_token, "Please enter any string to show the main table.\n\nOr enter 'fsm' to show fsm.png")
             
-        
-       
     return "OK"
 
 
