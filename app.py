@@ -125,7 +125,7 @@ def callback():
                 key == True
                 break
 
-        if response:
+        if response and key:
             machine.advance(event)
         elif response==False or key==False:
             machine.go_back()
