@@ -115,7 +115,7 @@ def callback():
         
         response = True
         for state in final_states:
-            if event.message.text==state:
+            if machine.state==state:
                 response = False
                 break
 
