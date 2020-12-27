@@ -127,8 +127,11 @@ def callback():
 
 
         if response :
-            print(machine.state)
+            prev_state = machine.state
             machine.advance(event)
+            now_state = machine.state
+            if prev_state==now_state:
+                machine.go_back()
             print(machine.state+'\n')
         else:
             machine.go_back()
