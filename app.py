@@ -116,6 +116,7 @@ def callback():
             continue
         if event.message.text.lower()=='fsm':
             machine.go_back()
+            machine.advance(event)
             send_image_message(event.reply_token, 'https://github.com/anson0221/Line-Chat-Bot/blob/master/fsm.png?raw=true')
             continue
         
@@ -127,15 +128,13 @@ def callback():
 
 
         if response :
-            prev_state = machine.state
             machine.advance(event)
-            now_state = machine.state
-            if prev_state==now_state:
-                machine.go_back()
+        
             print(machine.state+'\n')
         else:
-            machine.go_back()
             send_text_message(event.reply_token, "Please enter any string to show the main table.\n\nOr enter 'fsm' to show fsm.png")
+            machine.go_back()
+            machine.advance(event)
             
     return "OK"
 

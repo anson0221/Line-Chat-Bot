@@ -20,8 +20,7 @@ class TocMachine(GraphMachine):
 
     def is_going_to_ptt(self, event):
         text = event.message.text
-        if text.lower() != "ptt":
-            send_text_message(event.reply_token, "Please enter the right format.\n\nOr enter 'fsm' to show fsm.png")
+        
         return text.lower() == "ptt"
 
     def is_going_to_pttbox(self, event):
