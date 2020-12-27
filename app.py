@@ -52,7 +52,7 @@ machine = TocMachine(
         {
             "trigger": "go_back", 
             "source": [
-                        "ptt", "pttbox", "pttlive", "ptthot",
+                        "main_table", "ptt", "pttbox", "pttlive", "ptthot",
                     ], 
             "dest": "user",
             },
@@ -107,6 +107,7 @@ def callback():
         if not isinstance(event.message.text, str):
             continue
         if event.message.text.lower()=='fsm':
+            machine.go_back()
             send_image_message(event.reply_token, 'https://github.com/anson0221/Line-Chat-Bot/blob/master/fsm.png?raw=true')
             continue
         
