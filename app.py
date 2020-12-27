@@ -67,6 +67,8 @@ final_states = [
     "pttbox", "pttlive", "ptthot",
 ]
 
+states=["main_table", "ptt", "pttbox", "pttlive", "ptthot"]
+
 app = Flask(__name__, static_url_path="")
 
 
@@ -111,15 +113,21 @@ def callback():
             send_image_message(event.reply_token, 'https://github.com/anson0221/Line-Chat-Bot/blob/master/fsm.png?raw=true')
             continue
         
-        response = False
+        response = True
         for state in final_states:
             if event.message.text==state:
-                response = True
+                response = False
+                break
+
+        key = False
+        for state in states:
+            if event.message.text==state:
+                key == True
                 break
 
         if response:
             machine.advance(event)
-        else:
+        elif response==False or key==False:
             machine.go_back()
             send_text_message(event.reply_token, "Please enter any string to show the main table.\n\nOr enter 'fsm' to show fsm.png")
             print(machine.state)
