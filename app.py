@@ -8,7 +8,7 @@ from linebot.exceptions import InvalidSignatureError
 from linebot.models import MessageEvent, TextMessage, TextSendMessage
 
 from fsm import TocMachine
-from utils import send_text_message
+from utils import send_image_message, send_text_message
 
 load_dotenv()
 
@@ -62,6 +62,7 @@ machine = TocMachine(
     show_conditions=True,
 )
 
+
 final_states = [
     "pttbox", "pttlive", "ptthot",
 ]
@@ -96,6 +97,7 @@ def callback():
     except InvalidSignatureError:
         abort(400)
 
+
     # if event is MessageEvent and message is TextMessage, then echo text
     for event in events:
         if not isinstance(event, MessageEvent):
@@ -103,6 +105,9 @@ def callback():
         if not isinstance(event.message, TextMessage):
             continue
         if not isinstance(event.message.text, str):
+            continue
+        if event.message.text.lower()=='fsm':
+            send_image_message(event.reply_token, 'https://line-bot-toc-fp.herokuapp.com/show-fsm')
             continue
         
         response = True
