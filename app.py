@@ -121,40 +121,9 @@ def callback():
             machine.advance(event)
         else:
             machine.go_back()
-            send_text_message(event.reply_token, "Initialization :\nPlease enter any string to show the main table")
+            send_text_message(event.reply_token, "Please enter any string to show the main table.\n\nOr enter 'fsm' to show fsm.png")
             print(machine.state)
        
-    return "OK"
-
-
-@app.route("/webhook", methods=["POST"])
-def webhook_handler():
-    signature = request.headers["X-Line-Signature"]
-    # get request body as text
-    body = request.get_data(as_text=True)
-    app.logger.info(f"Request body: {body}")
-
-    # parse webhook body
-    try:
-        events = parser.parse(body, signature)
-    except InvalidSignatureError:
-        abort(400)
-
-    # if event is MessageEvent and message is TextMessage, then echo text
-    for event in events:
-        if not isinstance(event, MessageEvent):
-            continue
-        if not isinstance(event.message, TextMessage):
-            continue
-        if not isinstance(event.message.text, str):
-            continue
-        print(f"\nFSM STATE: {machine.state}")
-        print(f"REQUEST BODY: \n{body}")
-
-        response = machine.advance(event)
-        if response == False:
-            send_text_message(event.reply_token, "Something goes wrong!")
-
     return "OK"
 
 
