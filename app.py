@@ -134,11 +134,13 @@ def callback():
 
 
         if (response and key) or machine.state=="user":
+            print(machine.state)
             machine.advance(event)
+            print(machine.state+'\n')
         else:
             machine.go_back()
             send_text_message(event.reply_token, "Please enter any string to show the main table.\n\nOr enter 'fsm' to show fsm.png")
-            print(machine.state)
+            
         
        
     return "OK"
