@@ -13,10 +13,10 @@ class TocMachine(GraphMachine):
         self.machine = GraphMachine(model=self, **machine_configs)
 
     # is_going_to_
-    def is_going_to_main_table(self, event):
-        text = event.message.text
-        print('is_going_to_main_table')
-        return True
+    # def is_going_to_main_table(self, event):
+    #     text = event.message.text
+    #     print('is_going_to_main_table')
+    #     return True
 
     def is_going_to_ptt(self, event):
         text = event.message.text

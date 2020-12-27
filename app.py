@@ -23,7 +23,6 @@ machine = TocMachine(
             "trigger": "advance_0",
             "source": "user",
             "dest": "main_table",
-            "conditions": "is_going_to_main_table",
         },
         {
             "trigger": "advance",
