@@ -1,5 +1,8 @@
 # Line Chat Bot
-## NBA information
+
+### 開發說明：[請點此觀看](https://github.com/NCKU-CCS/TOC-Project-2020.git)
+
+---
 ![](https://i.imgur.com/ApnVJNg.png)
 
 ---
