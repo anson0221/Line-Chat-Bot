@@ -107,7 +107,7 @@ def callback():
         if not isinstance(event.message.text, str):
             continue
         if event.message.text.lower()=='fsm':
-            send_image_message(event.reply_token, 'https://line-bot-toc-fp.herokuapp.com/show-fsm')
+            send_image_message(event.reply_token, 'https://github.com/anson0221/Line-Chat-Bot/blob/master/fsm.png?raw=true')
             continue
         
         response = True
@@ -152,7 +152,7 @@ def webhook_handler():
 
         response = machine.advance(event)
         if response == False:
-            send_text_message(event.reply_token, "Not Entering any State")
+            send_text_message(event.reply_token, "Something goes wrong!")
 
     return "OK"
 
