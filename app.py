@@ -129,7 +129,10 @@ def callback():
 
         if response :
             prev_state = machine.state
-            machine.advance(event)
+            if machine.state=="user":
+                machine.advance_0()
+            else:
+                machine.advance(event)
             now_state = machine.state
             if prev_state==now_state:
                 machine.go_back()
