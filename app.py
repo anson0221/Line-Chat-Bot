@@ -20,7 +20,7 @@ machine = TocMachine(
             ],
     transitions=[
         {
-            "trigger": "advance",
+            "trigger": "advance_0",
             "source": "user",
             "dest": "main_table",
             "conditions": "is_going_to_main_table",
@@ -116,7 +116,7 @@ def callback():
             continue
         if event.message.text.lower()=='fsm':
             machine.go_back()
-            machine.advance(event)
+            machine.advance_0()
             send_image_message(event.reply_token, 'https://github.com/anson0221/Line-Chat-Bot/blob/master/fsm.png?raw=true')
             continue
         
@@ -128,9 +128,12 @@ def callback():
 
 
         if response :
+            prev_state = machine.state
             machine.advance(event)
-        
-            print(machine.state+'\n')
+            now_state = machine.state
+            if prev_state==now_state:
+                machine.go_back()
+                machine.advance_0()
         else:
             # send_text_message(event.reply_token, "Please enter any string to show the main table.\n\nOr enter 'fsm' to show fsm.png")
             machine.go_back()
