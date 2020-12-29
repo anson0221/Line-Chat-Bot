@@ -70,7 +70,7 @@ machine = TocMachine(
 
 
 final_states = [
-    "pttbox", "pttlive", "ptthot",
+    "pttbox", "pttlive", "ptthot", "demo"
 ]
 
 # states = ["main_table", "ptt", "pttbox", "pttlive", "ptthot"]
