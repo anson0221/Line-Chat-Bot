@@ -216,7 +216,7 @@ class TocMachine(GraphMachine):
         qualified_date = []
         qualified_year = []
         today = datetime.now().astimezone(timezone(timedelta(hours=8))) # 轉換時區：東8
-        for i in range(7):
+        for i in range(2):
             date = today-timedelta(i)
             qualified_date.append(str(date.month)+'/'+str(date.day))
             qualified_year.append(str(date.year))
