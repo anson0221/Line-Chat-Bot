@@ -50,9 +50,15 @@ machine = TocMachine(
             "conditions": "is_going_to_ptthot",
         },
         {
+            "trigger": "advance",
+            "source": "ptt",
+            "dest": "demo",
+            "conditions": "is_going_to_demo",
+        },
+        {
             "trigger": "go_back", 
             "source": [
-                        "main_table", "ptt", "pttbox", "pttlive", "ptthot",
+                        "main_table", "ptt", "pttbox", "pttlive", "ptthot", "demo"
                     ], 
             "dest": "user",
             },
