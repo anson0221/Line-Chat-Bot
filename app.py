@@ -16,7 +16,7 @@ load_dotenv()
 machine = TocMachine(
     states=[
             "user", "main_table",
-            "ptt", "pttbox", "pttlive", "ptthot",
+            "ptt", "pttbox", "pttlive", "ptthot", "demo"
             ],
     transitions=[
         {
