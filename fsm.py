@@ -35,9 +35,6 @@ class TocMachine(GraphMachine):
         text = event.message.text
         return text.lower() == "ptthot"
 
-    def is_going_to_demo(self, event):
-        text = event.message.text
-        return text.lower() == "demo"
 
     # main_table
     def on_enter_main_table(self, event):
@@ -317,8 +314,3 @@ class TocMachine(GraphMachine):
             text_ += '('+date_list[i]+')'+'\n'+title_list[i]+'\n'+url_list[i]+'\n\n'
 
         send_text_message(reply_token, text_)
-
-    # demo
-    def on_enter_demo(self, event):
-        reply_token = event.reply_token
-        send_text_message(reply_token, 'Hello!')

@@ -16,7 +16,7 @@ load_dotenv()
 machine = TocMachine(
     states=[
             "user", "main_table",
-            "ptt", "pttbox", "pttlive", "ptthot", "demo"
+            "ptt", "pttbox", "pttlive", "ptthot"
             ],
     transitions=[
         {
@@ -50,12 +50,6 @@ machine = TocMachine(
             "conditions": "is_going_to_ptthot",
         },
         {
-            "trigger": "advance",
-            "source": "ptt",
-            "dest": "demo",
-            "conditions": "is_going_to_demo",
-        },
-        {
             "trigger": "go_back", 
             "source": [
                         "main_table", "ptt", "pttbox", "pttlive", "ptthot", "demo"
@@ -70,16 +64,9 @@ machine = TocMachine(
 
 
 final_states = [
-    "pttbox", "pttlive", "ptthot", "demo"
+    "pttbox", "pttlive", "ptthot"
 ]
 
-# states = ["main_table", "ptt", "pttbox", "pttlive", "ptthot"]
-# mt_goto_list = ["ptt"]
-# ptt_goto_list = ["pttbox", "pttlive", "ptthot"]
-# box_goto_list = []
-# live_goto_list = []
-# hot_goto_list = []
-# cangoto_states={"main_table":mt_goto_list, "ptt":ptt_goto_list, "pttbox":box_goto_list, "pttlive":live_goto_list, "ptthot":hot_goto_list}
 
 app = Flask(__name__, static_url_path="")
 
@@ -121,7 +108,8 @@ def callback():
         if not isinstance(event.message.text, str):
             continue
         if event.message.text.lower()=='fsm':
-            machine.go_back()
+            if machine.state!="user":
+                machine.go_back()
             send_image_message(event.reply_token, 'https://github.com/anson0221/Line-Chat-Bot/blob/master/fsm.png?raw=true')
             continue
         
